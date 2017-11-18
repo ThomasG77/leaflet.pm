@@ -164,6 +164,16 @@ Draw.Circle = Draw.extend({
             // sync the hintline with hint marker
             this._hintMarker.on('move', this._syncHintLine, this);
             this._hintMarker.on('move', this._syncCircleRadius, this);
+            this._hintMarker.on('move', this._hookHintMarkerMove, this);
+        }
+    },
+    _hookHintMarkerMove() {
+        if (this._layer.getLatLng() && this._layer.getLatLng().lat !== 0 && this._layer.getLatLng().lng !== 0) {
+            this._map.fire('pm:drawmousemove', {
+                shape: this._shape,
+                workingLayer: this._layer,
+                latlng: this._hintMarker.getLatLng()
+            });
         }
     },
     _finishShape() {

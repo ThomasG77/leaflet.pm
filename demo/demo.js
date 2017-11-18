@@ -100,6 +100,11 @@ map2.on('pm:globaleditmodetoggled', function(e) {
     // console.log(e);
 });
 
+map2.on('pm:drawmousemove', function(e) {
+  console.log('DRAWMOUSEMOVE', e);
+  console.log(map2.distance(e.latlng, e.workingLayer.getLatLng()));
+});
+
 // GEOSJON EXAMPLE
 
 const geoJsonData = {
